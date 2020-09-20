@@ -74,7 +74,7 @@ class LogitReg:
         plt.scatter(positive_xs[:, 0], positive_xs[:, 1], c='#00CED1', marker='+', s=80, label='Great (positive)')
         plt.scatter(negative_xs[:, 0], negative_xs[:, 1], c='#DC143C', marker='1', s=80, label='Awful (negative)')
 
-        # plot gap
+        # plot partition
         x0 = np.arange(0, 1, 0.01)
         x1 = -(self.w[0]*x0+self.b)/self.w[1]
         plt.plot(x0, x1, c='m', label='Partition')
