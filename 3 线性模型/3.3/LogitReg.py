@@ -14,7 +14,7 @@ class LogitReg:
     def __init__(self, xsize):
         """ Init parameters of the learner """
         # xsize: size of input
-        self.w = np.random.randn(2)
+        self.w = np.random.randn(xsize)
         self.b = np.random.randn()
 
     def load(self, xs, ys):
@@ -40,13 +40,16 @@ class LogitReg:
 
         for step in range(5000):
             # 1st, 2st gradient of loss
-            onegrad2w, twograd2w = np.zeros(self.w.shape), np.zeros(self.w.shape)
+            onegrad2w, twograd2w = np.zeros(self.w.shape), 0
             onegrad2b, twograd2b = 0, 0
 
             # gradient descent
             for i in range(self.xs.shape[0]):
                 y = self.w.dot(self.xs[i]) + self.b    # output
-                p1 = np.exp(y)/(1+np.exp(y))      # likelihood func of y = 1
+                if y < 0:
+                    p1 = np.exp(y)/(1+np.exp(y))      # likelihood func of y = 1
+                else:
+                    p1 = 1/(1+np.exp(-y))
                 onegrad2w += self.xs[i]*(p1-self.ys[i])
                 onegrad2b += p1 - self.ys[i]
                 twograd2w += self.xs[i].dot(self.xs[i])*p1*(1-p1)
