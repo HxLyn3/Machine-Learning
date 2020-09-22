@@ -2,6 +2,8 @@ import xlrd
 import numpy as np
 import matplotlib.pyplot as plt
 
+""" use watermelon dataset """
+"""
 # load data
 data = xlrd.open_workbook('./WTMLDataSet.xlsx')
 table = data.sheet_by_name('WTML')
@@ -18,10 +20,16 @@ positive_xs = xs[ys==1]
 positive_ys = ys[ys==1]
 negative_xs = xs[ys==0]
 negative_ys = ys[ys==0]
+"""
+
+# create dataset
+positive_xs = np.random.randn(16, 2)*0.1 + 0.7
+negative_xs = np.random.randn(16, 2)*0.1 + 0.3
 
 # mean
 mu1 = np.mean(positive_xs, axis=0)
 mu0 = np.mean(negative_xs, axis=0)
+mu = (mu0+mu1)/2
 
 # covariance
 Sigma1 = np.cov(positive_xs.T)
@@ -45,27 +53,39 @@ w = w[:, 0]
 w /= np.sqrt((w.dot(w)))
 
 # visualize
+
 # projection line
-x = np.arange(0, 0.15, 0.01)
-y = w[1]/w[0]*x
+k = w[1]/w[0]
+x = np.arange(0, 1, 0.0001)
+y = k*(x-mu[0])+mu[1]
 plt.plot(x, y, c='m', label='Projection line')
+
 # plot data
 plt.scatter(positive_xs[:, 0], positive_xs[:, 1], c='#00CED1', marker='o', s=30, label='Positive')
 plt.scatter(negative_xs[:, 0], negative_xs[:, 1], c='#DC143C', marker='o', s=30, label='Negative')
+
 # projection
 for i in range(positive_xs.shape[0]):
-    prolen = positive_xs[i].dot(w)      # length of projection
-    newp = prolen * w
+    dis = (positive_xs[i,1]-k*positive_xs[i,0]+k*mu[0]-mu[1])/np.sqrt(k**2+1) # distance from point to line
+    newp = positive_xs[i].copy()
+    newp[0] -= dis*w[1]
+    newp[1] += dis*w[0]
     plt.plot([positive_xs[i, 0], newp[0]], [positive_xs[i, 1], newp[1]], color='#00CED1', linewidth=0.5, linestyle='--')
     positive_xs[i] = newp
+
 for i in range(negative_xs.shape[0]):
-    prolen = negative_xs[i].dot(w)      # length of projection
-    newp = prolen * w
+    dis = (negative_xs[i,1]-k*negative_xs[i,0]+k*mu[0]-mu[1])/np.sqrt(k**2+1) # distance from point to line
+    newp = negative_xs[i].copy()
+    newp[0] -= dis*w[1]
+    newp[1] += dis*w[0]
     plt.plot([negative_xs[i, 0], newp[0]], [negative_xs[i, 1], newp[1]], color='#DC143C', linewidth=0.5, linestyle='--')
     negative_xs[i] = newp
+
 # plot data (after projection)
 plt.scatter(positive_xs[:, 0], positive_xs[:, 1], c='#00CED1', marker='*', s=30, label='Positive (projection)')
 plt.scatter(negative_xs[:, 0], negative_xs[:, 1], c='#DC143C', marker='*', s=30, label='Negative (projection)')
 
+plt.xlim([0, 1])
+plt.ylim([0, 1])
 plt.legend()
 plt.show()
