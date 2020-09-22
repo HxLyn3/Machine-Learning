@@ -1,3 +1,10 @@
+"""
+- Author: Haoxin Lin
+- Email: linhx36@outlook.com
+- Date: 2020.09.22
+- Brief: Linear Discriminant Analysis
+"""
+
 import xlrd
 import numpy as np
 import matplotlib.pyplot as plt
