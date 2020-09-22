@@ -82,7 +82,7 @@ class LogitReg:
         return 1 if y > 0 else 0
 
     def visualize(self):
-        """ Visualize data and parameters """
+        """ Visualize data and parameters (Only for 3.3)"""
         plt.xlabel("x[0]: Density")
         plt.ylabel("x[1]: Sugar Content")
         positive_xs = self.xs[self.ys==1]

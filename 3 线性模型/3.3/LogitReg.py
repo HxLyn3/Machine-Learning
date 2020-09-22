@@ -14,8 +14,17 @@ class LogitReg:
     def __init__(self, xsize):
         """ Init parameters of the learner """
         # xsize: size of input
-        self.w = np.random.randn(xsize)
+        self.xsize = xsize
+        self.w = np.random.randn(self.xsize)
         self.b = np.random.randn()
+        self.lr = 0.1      # learning rate
+
+    def reset(self):
+        """ Reset parameters """
+        self.w = np.random.randn(self.xsize)
+        self.b = np.random.randn()
+        self.lr = 0.1
+        del self.xs, self.ys
 
     def load(self, xs, ys):
         """ load dataset """
@@ -38,7 +47,7 @@ class LogitReg:
         print("### Start learning ###")
         print("Initial loss: %.4f"%self.loss())
 
-        for step in range(5000):
+        for step in range(20000):
             # 1st, 2st gradient of loss
             onegrad2w, twograd2w = np.zeros(self.w.shape), 0
             onegrad2b, twograd2b = 0, 0
@@ -54,11 +63,17 @@ class LogitReg:
                 onegrad2b += p1 - self.ys[i]
                 twograd2w += self.xs[i].dot(self.xs[i])*p1*(1-p1)
                 twograd2b += p1*(1-p1)
-            self.w -= 0.1*onegrad2w/twograd2w
-            self.b -= 0.1*onegrad2b/twograd2b
+            if twograd2w != 0:
+                self.w -= self.lr*onegrad2w/twograd2w
+            else:
+                self.w = np.random.randn(self.xsize)
+            if twograd2b != 0:
+                self.b -= self.lr*onegrad2b/twograd2b
+            else:
+                self.b = np.random.randn()
 
             # new loss
-            if step % 100 == 0:
+            if step % 1000 == 0:
                 print("Step %d: loss=%.4f"%(step+1, self.loss()))
 
     def predict(self, input):
@@ -67,7 +82,7 @@ class LogitReg:
         return 1 if y > 0 else 0
 
     def visualize(self):
-        """ Visualize data and parameters """
+        """ Visualize data and parameters (Only for 3.3)"""
         plt.xlabel("x[0]: Density")
         plt.ylabel("x[1]: Sugar Content")
         positive_xs = self.xs[self.ys==1]
@@ -84,3 +99,16 @@ class LogitReg:
 
         plt.legend()
         plt.show()
+
+    def test(self, xs, ys):
+        """ Test on test dataset """
+        ls = 0      # loss
+        error_num = 0
+        for i in range(xs.shape[0]):
+            y = self.w.dot(xs[i]) + self.b    # output
+            ls += np.log(1+np.exp(y)) - ys[i]*y
+            if self.predict(xs[i]) != ys[i]:
+                error_num += 1
+        ls /= xs.shape[0]
+        error_rate = error_num/xs.shape[0]
+        return ls, error_rate
