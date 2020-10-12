@@ -11,7 +11,7 @@ from matplotlib import colors
 import matplotlib.pyplot as plt
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis as QDA
 
-data = xlrd.open_workbook('./WTMLDataSet.xlsx')
+data = xlrd.open_workbook('../WTMLDataSet_3.0alpha.xlsx')
 table = data.sheet_by_name('WTML')
 
 dataset = []

@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 """ use watermelon dataset """
 """
 # load data
-data = xlrd.open_workbook('./WTMLDataSet.xlsx')
+data = xlrd.open_workbook('../WTMLDataSet_3.0alpha.xlsx')
 table = data.sheet_by_name('WTML')
 
 dataset = []

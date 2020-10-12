@@ -3,7 +3,7 @@ import numpy as np
 from LogitReg import LogitReg
 
 # load data
-data = xlrd.open_workbook('./WTMLDataSet.xlsx')
+data = xlrd.open_workbook('../WTMLDataSet_3.0alpha.xlsx')
 table = data.sheet_by_name('WTML')
 
 dataset = []
