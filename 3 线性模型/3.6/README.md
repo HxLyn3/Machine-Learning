@@ -38,5 +38,5 @@ python3 QDA.py
 ```
 
 ## Result
-![](./output.png)
+![image](./output.png)
 QDA is able to deal with the nonlinear sparable dataset well.

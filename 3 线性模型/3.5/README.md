@@ -35,5 +35,5 @@ python3 LDA.py
 ```
 
 ## Result
-![](./output.png)
+![image](./output.png)
 The dataset isn't linearly separable, so the result of LDA(Linear Discriminant Analysis) isn't perfect.
