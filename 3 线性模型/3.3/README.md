@@ -35,5 +35,5 @@ python3 WTMLClassify.py
 ```
 
 ## Result
-![](https://github.com/TroyLin3/Machine-Learning/blob/master/3%20%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/3.3/output.png)
+![](./output.png)
 It's obvious that linear model make it difficult to draw boundaries between different categories because the dataset isn't linearly separable.
