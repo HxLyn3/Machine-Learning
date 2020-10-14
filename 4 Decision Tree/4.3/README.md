@@ -36,4 +36,4 @@ python3 test.py
 ```
 
 ## Result
-![](https://github.com/TroyLin3/Machine-Learning/blob/master/4%20Decision%20Tree/4.3/DecisionTree.png)
+![](https://github.com/TroyLin3/Machine-Learning/blob/master/image/4.3.png)
