@@ -1,5 +1,5 @@
-# Problem 3.3
-编程实现对率回归，并给出西瓜数据集3.0α上的结果。
+# Problem 3.5
+编程实现线性判别分析，并给出西瓜数据集3.0α上的结果。
 
 ## Dataset
 西瓜数据集3.0α @ `../WTMLDataSet_3.0alpha.xlsx`
@@ -31,9 +31,9 @@
 
 ## Usage
 ```Shell
-python3 WTMLClassify.py
+python3 LDA.py
 ```
 
 ## Result
 ![](./output.png)
-It's obvious that linear model make it difficult to draw boundaries between different categories because the dataset isn't linearly separable.
+The dataset isn't linearly separable, so the result of LDA(Linear Discriminant Analysis) isn't perfect.

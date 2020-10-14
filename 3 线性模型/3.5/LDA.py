@@ -10,7 +10,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 """ use watermelon dataset """
-"""
 # load data
 data = xlrd.open_workbook('../WTMLDataSet_3.0alpha.xlsx')
 table = data.sheet_by_name('WTML')
@@ -27,11 +26,10 @@ positive_xs = xs[ys==1]
 positive_ys = ys[ys==1]
 negative_xs = xs[ys==0]
 negative_ys = ys[ys==0]
-"""
 
 # create dataset
-positive_xs = np.random.randn(16, 2)*0.1 + 0.7
-negative_xs = np.random.randn(16, 2)*0.1 + 0.3
+# positive_xs = np.random.randn(16, 2)*0.1 + 0.7
+# negative_xs = np.random.randn(16, 2)*0.1 + 0.3
 
 # mean
 mu1 = np.mean(positive_xs, axis=0)

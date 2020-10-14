@@ -1,5 +1,7 @@
-# Problem 3.3
-编程实现对率回归，并给出西瓜数据集3.0α上的结果。
+# Problem 3.6
+线性判别分析仅在线性可分数据上能获得理想结果，试设计一个改进方法，使其能较好地用于非线性可分数据。  
+  
+Use sklearn to implement QDA, just for experiment.
 
 ## Dataset
 西瓜数据集3.0α @ `../WTMLDataSet_3.0alpha.xlsx`
@@ -28,12 +30,13 @@
 - `xlrd 1.2.0`  
 - `numpy 1.15.4`
 - `matplotlib 3.0.0`
+- `sklearn 0.22.2.post1`
 
 ## Usage
 ```Shell
-python3 WTMLClassify.py
+python3 QDA.py
 ```
 
 ## Result
 ![](./output.png)
-It's obvious that linear model make it difficult to draw boundaries between different categories because the dataset isn't linearly separable.
+QDA is able to deal with the nonlinear sparable dataset well.
