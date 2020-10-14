@@ -16,3 +16,8 @@ python3 test.py
 ```
 
 ## Result
+```
+Comparison:
+10-fold Cross Validation: 0.42
+Leave-One-Out: 0.39
+````

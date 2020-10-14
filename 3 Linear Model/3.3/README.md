@@ -35,5 +35,5 @@ python3 WTMLClassify.py
 ```
 
 ## Result
-![image](./output.png)
-It's obvious that linear model make it difficult to draw boundaries between different categories because the dataset isn't linearly separable.
+![image](./output.png)  
+It's obvious that linear model makes it difficult to draw boundaries between different categories because the dataset isn't linearly separable.
