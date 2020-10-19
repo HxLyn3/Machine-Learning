@@ -3,7 +3,7 @@
 
 ## Dataset
 西瓜数据集2.0 @ `../WTMLDataSet_2.0.xlsx`  
-<br>
+
 训练集：
 
 编号|	色泽|	根蒂|	敲声|	纹理|	脐部|	触感|	好瓜|
@@ -18,7 +18,7 @@
 15|	乌黑|	稍蜷|	浊响|	清晰|	稍凹|	软粘|	否
 16|	浅白|	蜷缩|	浊响|	模糊|	平坦|	硬滑|	否
 17|	青绿|	蜷缩|	沉闷|	稍糊|	稍凹|	硬滑|	否
-<br>
+
 测试集：
 
 编号|	色泽|	根蒂|	敲声|	纹理|	脐部|	触感|	好瓜|
@@ -43,18 +43,26 @@ python3 test.py
 ```
 
 ## Result
-No Pruning  
+`No Pruning`
 ![image](./No-Pruning.png)
-Decision Tree without pruning is easy to overfit.
+Decision Tree without pruning is easy to overfit.  
+  
 
-<br>
-
-Pre-pruning  
+`Pre-pruning`
 ![image](./Pre-Pruning.png)
-Pre-pruning prunes some branches to avoid overfitting, but it's easy to cause the case of under-fitting at the same time.
+Pre-pruning prunes some branches to avoid overfitting, but it's easy to cause the case of under-fitting at the same time.  
+  
+  
 
-<br>
-
-Post-pruning
+`Post-pruning`
 ![image](./Post-Pruning.png)
-Post-pruning could avoids both overfitting and under-fiiting.
+Post-pruning could avoids both overfitting and under-fiiting.  
+  
+
+
+```
+Accuracy:
+No-Pruning    --  0.429
+Pre-Pruning   --  0.714
+Post-Pruning  --  0.714
+```

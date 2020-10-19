@@ -43,12 +43,12 @@ decisionTree = DecisionTree()
 # non pruning
 decisionTree.buildTree(train_xs, train_ys, test_xs, test_ys, \
     attributes, isdiscs, labels, partIndex='GiniIndex', prepruning=False)
-print("No-Pruning  --  %.3f"%decisionTree.test(test_xs, test_ys))
+print("No-Pruning    --  %.3f"%decisionTree.test(test_xs, test_ys))
 decisionTree.visualize(graph_name="No-Pruning")
 # pre pruning
 decisionTree.buildTree(train_xs, train_ys, test_xs, test_ys, \
     attributes, isdiscs, labels, partIndex='GiniIndex', prepruning=True)
-print("Pre-Pruning  --  %.3f"%decisionTree.test(test_xs, test_ys))
+print("Pre-Pruning   --  %.3f"%decisionTree.test(test_xs, test_ys))
 decisionTree.visualize(graph_name="Pre-Pruning")
 # post pruning
 decisionTree.buildTree(train_xs, train_ys, test_xs, test_ys, \
