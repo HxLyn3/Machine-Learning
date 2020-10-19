@@ -2,7 +2,7 @@
 - Author: Haoxin Lin
 - E-mail: linhx36@outlook.com
 - Date: 2020.10.19
-- Brief: A Decision Tree class
+- Brief: A Decision Tree class (more general)
 """
 
 # -*- coding: utf-8 -*-
