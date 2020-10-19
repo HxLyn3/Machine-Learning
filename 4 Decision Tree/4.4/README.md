@@ -7,7 +7,7 @@
 训练集：
 
 编号|	色泽|	根蒂|	敲声|	纹理|	脐部|	触感|	好瓜|
-|-|-|-|-|-|-|-|-|-|-|
+|-|-|-|-|-|-|-|-|
 1|	青绿|	蜷缩|	浊响|	清晰|	凹陷|	硬滑|	是
 2|	乌黑|	蜷缩|	沉闷|	清晰|	凹陷|	硬滑|	是
 3|	乌黑|	蜷缩|	浊响|	清晰|	凹陷|	硬滑|	是
@@ -22,7 +22,7 @@
 测试集：
 
 编号|	色泽|	根蒂|	敲声|	纹理|	脐部|	触感|	好瓜|
-|-|-|-|-|-|-|-|-|-|-|
+|-|-|-|-|-|-|-|-|
 4|	青绿|	蜷缩|	沉闷|	清晰|	凹陷|	硬滑|	是
 5|	浅白|	蜷缩|	浊响|	清晰|	凹陷|	硬滑|	是
 8|	乌黑|	稍蜷|	浊响|	清晰|	稍凹|	硬滑|	是
@@ -43,18 +43,18 @@ python3 test.py
 ```
 
 ## Result
-`No Pruning`
+`No Pruning`  
 ![image](./No-Pruning.png)
 Decision Tree without pruning is easy to overfit.  
   
 
-`Pre-pruning`
+`Pre-pruning`  
 ![image](./Pre-Pruning.png)
 Pre-pruning prunes some branches to avoid overfitting, but it's easy to cause the case of under-fitting at the same time.  
   
   
 
-`Post-pruning`
+`Post-pruning`  
 ![image](./Post-Pruning.png)
 Post-pruning could avoids both overfitting and under-fiiting.  
   
