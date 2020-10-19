@@ -44,18 +44,18 @@ python3 test.py
 
 ## Result
 `No Pruning`  
-![image](./No-Pruning.png)
+![image](./No-Pruning.png)  
 Decision Tree without pruning is easy to overfit.  
   
 
 `Pre-pruning`  
-![image](./Pre-Pruning.png)
+![image](./Pre-Pruning.png)  
 Pre-pruning prunes some branches to avoid overfitting, but it's easy to cause the case of under-fitting at the same time.  
   
   
 
 `Post-pruning`  
-![image](./Post-Pruning.png)
+![image](./Post-Pruning.png)  
 Post-pruning could avoids both overfitting and under-fiiting.  
   
 
