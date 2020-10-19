@@ -113,7 +113,7 @@ class DecisionTree():
         if temp == len(partAttrs):
             return LeafNode(np.argmax(np.bincount(ys)))
 
-        contiThres = {}                      # threshold of discrete attributes
+        contiThres = {}                      # threshold of continuous attributes
 
         # find the optimal attribute to partition the dataset
         prob = np.bincount(ys)/len(ys)

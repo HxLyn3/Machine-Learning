@@ -22,10 +22,10 @@ for i in range(table.nrows):
 dataset = np.array(dataset)
 
 xs = dataset[1:, 1:-1]
-ys = (dataset[1:, -1]=='是').astype(np.int32)
+ys = (dataset[1:, -1]=='否').astype(np.int32)
 attributes = dataset[0][1:-1]
 isdiscs = np.array([not bool(v.match(val)) for val in xs[0]])
-labels = ["坏瓜", "好瓜"]
+labels = ["好瓜", "坏瓜"]
 
 # generate decision tree
 decisionTree = DecisionTree()
