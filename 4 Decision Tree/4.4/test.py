@@ -2,7 +2,8 @@
 - Author: Haoxin Lin
 - E-mail: linhx36@outlook.com
 - Date: 2020.10.19
-- Brief: Deal with watermelon dataset 3.0 with decision tree
+- Brief: Test Decision Tree with non-pruning, pre-pruning and post-pruning 
+on watermelon dataset 2.0.
 """
 import re
 v = re.compile(r'^[-+]?[0-9]+(\.[0-9]+)?$')     # float or int reg
