@@ -2,7 +2,7 @@
 - Author: Haoxin Lin
 - E-mail: linhx36@outlook.com
 - Date: 2020.10.19
-- Brief: Test Decision Tree with non-pruning, pre-pruning and post-pruning 
+- Brief: Test Decision Tree with no-pruning, pre-pruning and post-pruning 
 on watermelon dataset 2.0.
 """
 import re
