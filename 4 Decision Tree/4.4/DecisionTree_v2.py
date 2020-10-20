@@ -2,7 +2,9 @@
 - Author: Haoxin Lin
 - E-mail: linhx36@outlook.com
 - Date: 2020.10.19
-- Brief: A Decision Tree class (more general)
+- Brief: A Decision Tree class. You can select Information Gain or Gini Index to choose
+optimal attribute for partition when building the Decision Tree. In addition, the function
+of pre-pruning or post-pruning is provided.
 """
 
 # -*- coding: utf-8 -*-
