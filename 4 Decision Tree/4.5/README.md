@@ -36,5 +36,5 @@ python3 test.py
 ```
 
 ## Result
-![image](./DecisionTree.png)
+![image](./DecisionTree.png)  
 Decision Tree which use Logit Regression as index to choose optimal attribute for partition is nearly the same as using Information Gain (just for watermelon dataset 3.0). The tiny difference is that thresholds for continuous attributes are more precise when using Logit Regression.
