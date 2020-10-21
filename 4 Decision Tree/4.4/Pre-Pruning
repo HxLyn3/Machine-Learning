@@ -1,9 +1,0 @@
-digraph "Pre-Pruning" {
-	0 [label="脐部=?" color=skyblue fontname=FangSong fontsize=12 shape=box style=filled]
-	1 [label="好瓜" color=skyblue fontname=FangSong style=filled]
-	0 -> 1 [label="凹陷" fontname=FangSong fontsize=12 style=filled]
-	2 [label="坏瓜" color=skyblue fontname=FangSong style=filled]
-	0 -> 2 [label="平坦" fontname=FangSong fontsize=12 style=filled]
-	3 [label="好瓜" color=skyblue fontname=FangSong style=filled]
-	0 -> 3 [label="稍凹" fontname=FangSong fontsize=12 style=filled]
-}
