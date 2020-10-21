@@ -2,7 +2,7 @@
 试选择4个UCI数据集（这里只选择了1个进行测试），对上述3种算法所产生的未剪枝、预剪枝、后剪枝决策树进行实验比较，并进行适当的统计显著性检验。（UCI数据集见<http://archive.ics.uci.edu/ml/>.）
 
 ## Dataset
-UCI 冷冻疗法数据集 @ `./Cryotherapy.xlsx`  
+UCI 冷冻疗法数据集 @ `./CrayoDataset.xlsx`  
 
 ## Environment
 - `python 3.5.4`  
