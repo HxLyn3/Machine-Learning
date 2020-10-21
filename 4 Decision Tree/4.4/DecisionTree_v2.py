@@ -309,18 +309,36 @@ class DecisionTree():
         if type(node) == LeafNode:
             return True
 
-        vals = node.attr_vals
-        ndepths = [-child.depth() for child in node.childs]
-        vals = np.array(vals)[np.argsort(ndepths)]
-        prunings = [None]*len(vals)
-        for i in range(len(vals)):
-            sub_xs = xs[xs[:, list(self.attributes).index(node.attr_name)]==vals[i]]
-            sub_ys = ys[xs[:, list(self.attributes).index(node.attr_name)]==vals[i]]
-            prunings[i] = self.post_pruning_recursive(sub_xs, sub_ys, node, vals[i], node.referChild(vals[i]))
+        # for discrete node
+        if type(node) == DiscreteNode:
+            vals = node.attr_vals
+            ndepths = [-child.depth() for child in node.childs]
+            vals = np.array(vals)[np.argsort(ndepths)]
+            prunings = [None]*len(vals)
+            for i in range(len(vals)):
+                sub_xs = xs[xs[:, list(self.attributes).index(node.attr_name)]==vals[i]]
+                sub_ys = ys[xs[:, list(self.attributes).index(node.attr_name)]==vals[i]]
+                prunings[i] = self.post_pruning_recursive(sub_xs, sub_ys, node, vals[i], node.referChild(vals[i]))
+
+        # for continuous node
+        elif type(node) == ContinuousNode:
+            thres = node.threshold
+            prunings = [None]*2
+            ndepths = [-child.depth() for child in node.childs]
+            for sign in np.argsort(ndepths):    # sign = 0: branch whose values less than thres
+                if sign == 0:
+                    sub_xs = xs[xs[:, list(self.attributes).index(node.attr_name)].astype(np.float64)<=thres]
+                    sub_ys = ys[xs[:, list(self.attributes).index(node.attr_name)].astype(np.float64)<=thres]
+                else:
+                    sub_xs = xs[xs[:, list(self.attributes).index(node.attr_name)].astype(np.float64)>thres]
+                    sub_ys = ys[xs[:, list(self.attributes).index(node.attr_name)].astype(np.float64)>thres]
+                prunings[sign] = self.post_pruning_recursive(sub_xs, sub_ys, node, sign, node.referChild(sign))
 
         if sum(prunings) == 0:
             return False
         else:
+            if len(ys) == 0:
+                return False
             # accuracy before pruning
             beforePrunAcc = self.test(self.test_xs, self.test_ys)
             # accuracy after pruning
