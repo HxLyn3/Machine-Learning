@@ -40,10 +40,9 @@ test_ys = ys[test_indices]
 print("Accuracy:")
 
 # decision tree
-decisionTree = DecisionTree()
+decisionTree = DecisionTree(train_xs, train_ys, test_xs, test_ys, attributes, isdiscs, labels,)
 # non pruning
-decisionTree.buildTree(train_xs, train_ys, test_xs, test_ys, \
-    attributes, isdiscs, labels, partIndex='GiniIndex', prepruning=False)
+decisionTree.buildTree(partIndex='GiniIndex', prepruning=False)
 print("No-Pruning    --  %.3f"%decisionTree.test(test_xs, test_ys))
 decisionTree.visualize(graph_name="No-Pruning")
 # post pruning
@@ -51,7 +50,6 @@ decisionTree.post_pruning()
 print("Post-Pruning  --  %.3f"%decisionTree.test(test_xs, test_ys))
 decisionTree.visualize(graph_name="Post-Pruning")
 # pre pruning
-decisionTree.buildTree(train_xs, train_ys, test_xs, test_ys, \
-    attributes, isdiscs, labels, partIndex='GiniIndex', prepruning=True)
+decisionTree.buildTree(partIndex='GiniIndex', prepruning=True)
 print("Pre-Pruning   --  %.3f"%decisionTree.test(test_xs, test_ys))
 decisionTree.visualize(graph_name="Pre-Pruning")

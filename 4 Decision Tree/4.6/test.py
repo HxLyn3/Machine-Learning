@@ -60,9 +60,8 @@ indices = ['InformationGain', 'GiniIndex', 'LogitRegression']
 for index in indices:
     # no pruning
     print("Decision Tree with index of %s (No Pruning). Constructing..."%index)
-    decisionTree = DecisionTree()
-    decisionTree.buildTree(train_xs, train_ys, test_xs, test_ys, \
-        attributes, isdiscs, labels, partIndex=index, prepruning=False)
+    decisionTree = DecisionTree(train_xs, train_ys, test_xs, test_ys, attributes, isdiscs, labels)
+    decisionTree.buildTree(partIndex=index, prepruning=False)
     decisionTree.visualize(graph_name=index + "_No-Pruning")
     print("Accuracy: %.4f\n"%decisionTree.test(test_xs, test_ys))
 
@@ -73,8 +72,6 @@ for index in indices:
 
     # pre-pruning
     print("Decision Tree with index of %s (Pre-Pruning). Constructing..."%index)
-    decisionTree = DecisionTree()
-    decisionTree.buildTree(train_xs, train_ys, test_xs, test_ys, \
-        attributes, isdiscs, labels, partIndex=index, prepruning=True)
+    decisionTree.buildTree(partIndex=index, prepruning=True)
     decisionTree.visualize(graph_name=index + "_Pre-Pruning")
     print("Accuracy: %.4f\n"%decisionTree.test(test_xs, test_ys))

@@ -28,6 +28,6 @@ isdiscs = np.array([not bool(v.match(val)) for val in xs[0]])
 labels = ["好瓜", "坏瓜"]
 
 # generate decision tree
-decisionTree = DecisionTree()
-decisionTree.buildTree(xs, ys, attributes, isdiscs, labels)
+decisionTree = DecisionTree(xs, ys, attributes, isdiscs, labels)
+decisionTree.buildTree()
 decisionTree.visualize()

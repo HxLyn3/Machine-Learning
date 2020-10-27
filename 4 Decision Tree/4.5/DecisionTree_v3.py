@@ -55,12 +55,12 @@ class Node():
             print("The node is leaf node.")
         return None
 
-    def depth(self):
-        """ return node's depth in the tree """
+    def height(self):
+        """ return node's height in the tree """
         if type(self) == LeafNode:
             return 0
         else:
-            return max([child.depth() for child in self.childs]) + 1
+            return max([child.height() for child in self.childs]) + 1
 
     def getLabel(self):
         """ return label of leaf node """
@@ -99,11 +99,7 @@ class LeafNode(Node):
 class DecisionTree():
     """ Decision Tree """
 
-    def __init__(self):
-        self.root = None                # root node
-
-    def buildTree(self, train_xs, train_ys, test_xs, test_ys, attributes, isdiscs, labels, partIndex='InformationGain', prepruning=False):
-        """ build decision tree """
+    def __init__(self, train_xs, train_ys, test_xs, test_ys, attributes, isdiscs, labels):
         self.train_xs = train_xs
         self.train_ys = train_ys
         self.test_xs = test_xs
@@ -115,13 +111,16 @@ class DecisionTree():
                 attr_values[i] = list(set(np.concatenate((train_xs[:, i], test_xs[:, i]))))   # the set of values for each attributes
         self.attributes = attributes
         self.isdiscs = isdiscs
+        self.labels = labels
         self.attr_values = attr_values
         self.vals_map = [None]*len(self.attr_values)
 
+    def buildTree(self, partIndex='InformationGain', prepruning=False):
+        """ build decision tree """
         self.partIndex = partIndex                  # choose optimal attribute for partition based on partIndex
         if self.partIndex == 'LogitRegression':
             for i in range(len(self.attr_values)):
-                if attr_values[i]:
+                if self.attr_values[i]:
                     dims = len(self.attr_values[i])
                     ValMap = {}
                     for j in range(dims):
@@ -132,11 +131,8 @@ class DecisionTree():
 
         self.prepruning = prepruning                # whether pre-pruning is need or not
 
-        # labels of output, 0: labels[0], 1: labels[1], ...
-        self.labels = labels
-
         self.handle = VirtualNode()
-        self.buildTreeRecursive(self.handle, 0, self.train_xs, self.train_ys, partAttrs=attributes)
+        self.buildTreeRecursive(self.handle, 0, self.train_xs, self.train_ys, partAttrs=self.attributes)
         self.root = self.handle.referChild(0)
 
     def buildTreeRecursive(self, father, branch_val, xs, ys, partAttrs):
@@ -355,8 +351,8 @@ class DecisionTree():
         # for discrete node
         if type(node) == DiscreteNode:
             vals = node.attr_vals
-            ndepths = [-child.depth() for child in node.childs]
-            vals = np.array(vals)[np.argsort(ndepths)]
+            nheights = [-child.height() for child in node.childs]
+            vals = np.array(vals)[np.argsort(nheights)]
             prunings = [None]*len(vals)
             for i in range(len(vals)):
                 sub_xs = xs[xs[:, list(self.attributes).index(node.attr_name)]==vals[i]]
@@ -367,8 +363,8 @@ class DecisionTree():
         elif type(node) == ContinuousNode:
             thres = node.threshold
             prunings = [None]*2
-            ndepths = [-child.depth() for child in node.childs]
-            for sign in np.argsort(ndepths):    # sign = 0: branch whose values less than thres
+            nheights = [-child.height() for child in node.childs]
+            for sign in np.argsort(nheights):    # sign = 0: branch whose values less than thres
                 if sign == 0:
                     sub_xs = xs[xs[:, list(self.attributes).index(node.attr_name)].astype(np.float64)<=thres]
                     sub_ys = ys[xs[:, list(self.attributes).index(node.attr_name)].astype(np.float64)<=thres]

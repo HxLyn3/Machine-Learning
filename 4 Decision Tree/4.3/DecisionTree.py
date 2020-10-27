@@ -78,21 +78,22 @@ class LeafNode(Node):
 class DecisionTree():
     """ Decision Tree """
 
-    def __init__(self):
-        self.root = None                # root node
+    def __init__(self, train_xs, train_ys, attributes, isdiscs, labels):
+        self.train_xs = train_xs
+        self.train_ys = train_ys
 
-    def buildTree(self, xs, ys, attributes, isdiscs, labels):
-        """ build decision tree """
         attr_values = [None]*len(attributes)
         for i in range(len(attributes)):
             if isdiscs[i]:
-                attr_values[i] = list(set(xs[:, i]))        # the set of values for each attributes
-        self.root = self.buildTreeRecursive(xs, ys, attributes, isdiscs, attr_values, partAttrs=attributes)
-
-        self.train_xs = xs
-        self.train_ys = ys
+                attr_values[i] = list(set(train_xs[:, i]))   # the set of values for each attributes
         self.attributes = attributes
+        self.isdiscs = isdiscs
         self.labels = labels
+        self.attr_values = attr_values
+
+    def buildTree(self):
+        """ build decision tree """
+        self.root = self.buildTreeRecursive(self.train_xs, self.train_ys, self.attributes, self.isdiscs, self.attr_values, partAttrs=self.attributes)
 
     def buildTreeRecursive(self, xs, ys, attributes, isdiscs, attr_values, partAttrs):
         """ build decision tree recursively """

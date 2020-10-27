@@ -30,7 +30,6 @@ isdiscs = np.array([not bool(v.match(val)) for val in xs[0]])
 labels = ["好瓜", "坏瓜"]
 
 # Logit Regression Decision Tree
-decisionTree = DecisionTree()
-decisionTree.buildTree(xs, ys, xs, ys, \
-    attributes, isdiscs, labels, partIndex='LogitRegression', prepruning=False)
+decisionTree = DecisionTree(xs, ys, xs, ys, attributes, isdiscs, labels)
+decisionTree.buildTree(partIndex='LogitRegression', prepruning=False)
 decisionTree.visualize(graph_name="DecisionTree")
