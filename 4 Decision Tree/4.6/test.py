@@ -17,7 +17,7 @@ import numpy as np
 from DecisionTree_v3 import DecisionTree
 
 # load data
-data = xlrd.open_workbook('./CrayoDataset.xlsx')
+data = xlrd.open_workbook('../CrayoDataset.xlsx')
 table = data.sheet_by_name('CrayoDataset')
 
 dataset = []
