@@ -201,7 +201,10 @@ class DecisionTree():
         """ plot tree recursively """
         cur_name = str(self.nodeNameCnt)
         self.nodeNameCnt += 1
-        if type(cur_node) == LeafNode:
+        if type(cur_node) == LeafNode and cur_name == '0':
+            graph.node(name=cur_name, label=self.labels[cur_node.label], \
+                color="skyblue", fontname="FangSong", style='filled')
+        elif type(cur_node) == LeafNode and cur_name != '0':
             graph.node(name=cur_name, label=self.labels[cur_node.label], \
                 color="skyblue", fontname="FangSong", style='filled')
             graph.edge(father_name, cur_name, label=branch_name, fontname="FangSong", fontsize='12', style='filled')
