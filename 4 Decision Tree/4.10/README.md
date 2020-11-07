@@ -1,7 +1,5 @@
 # Problem 4.10
 从网上下载或自己编程实现任意一种多变量决策树算法，并观察其在西瓜数据集3.0上产生的结果。  
-  
-Use sklearn to implement QDA, just for experiment.
 
 ## Dataset
 西瓜数据集3.0α @ `../WTMLDataSet_3.0alpha.xlsx`
