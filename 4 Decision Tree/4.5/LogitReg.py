@@ -82,25 +82,6 @@ class LogitReg:
         y = self.w.dot(input) + self.b
         return 1 if y > 0 else 0
 
-    def visualize(self):
-        """ Visualize data and parameters (Only for 3.3)"""
-        plt.xlabel("x[0]: Density")
-        plt.ylabel("x[1]: Sugar Content")
-        positive_xs = self.xs[self.ys==1]
-        negative_xs = self.xs[self.ys==0]
-
-        # plot data
-        plt.scatter(positive_xs[:, 0], positive_xs[:, 1], c='#00CED1', marker='+', s=80, label='Great (positive)')
-        plt.scatter(negative_xs[:, 0], negative_xs[:, 1], c='#DC143C', marker='1', s=80, label='Awful (negative)')
-
-        # plot partition
-        x0 = np.arange(0, 1, 0.01)
-        x1 = -(self.w[0]*x0+self.b)/self.w[1]
-        plt.plot(x0, x1, c='m', label='Partition')
-
-        plt.legend()
-        plt.show()
-
     def test(self, xs, ys):
         """ Test on test dataset """
         prediction = np.array([self.predict(x) for x in xs])
