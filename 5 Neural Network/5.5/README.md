@@ -41,14 +41,16 @@ python3 test.py
 The trained Neural Network is as following:  
 ![image](./NeuralNetwork.png)  
 
-Comparison
+### Comparison  
+Training 100 epochs.  
+![image](./loss.png)  
 ```Python
-### After 10000 epochs training ###
-- Standard BP:    using time = 91.473s, loss = 0.1535, accuracy = 85.71%
-- Accumulated BP: using time = 21.639s, loss = 0.2133, accuracy = 71.43%
+### After 100 epochs training ###
+- Standard BP:    using time = 0.236s, loss = 0.3450, accuracy = 85.71%
+- Accumulated BP: using time = 0.041s, loss = 0.8702, accuracy = 71.43%
 ```
 It's proved that Standard BP takes more time than Accumulated BP when training the same number of epochs. However, Accumulated BP meets the problem that gradient descend slowly after a specified number of epochs, but Standard BP doesn't.
 
 ## P.S.
 In order to visualize Neural Network, I also train Neural Network with watermelon dataset 3.0α whose data only have two attributes. The cmd is ```python test_alpha.py```. Then you can see the boundary that Neural Network (use Relu and Sigmoid respectively as activation function) draws on dataset.  
-![image](./output.png)  
+![image](./output_3.0alpha.png)  

@@ -89,11 +89,11 @@ class NN():
         loss = None
         # use cross-entropy in classification tasks
         if loss_type == "CrossEntropy":
-            cross_entropy = -np.mean(np.log(preds[range(preds.shape[0]), self.ys]))
+            cross_entropy = -np.mean(np.log(preds[range(preds.shape[0]), ys]))
             loss = cross_entropy
         # use mean square error in regression tasks
         elif loss_type == "MSE":
-            mse = np.mean((preds-self.ys.reshape(-1, 1))**2)
+            mse = np.mean((preds-ys.reshape(-1, 1))**2)
             loss = mse
 
         # regularization
