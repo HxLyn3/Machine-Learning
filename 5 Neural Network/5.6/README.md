@@ -25,4 +25,4 @@ Training 100 epochs.
 - Constant lr:  loss = 0.5539, accuracy = 72.41%
 - Exp-Decay lr: loss = 0.4894, accuracy = 74.14%
 ```  
-BP algorithm with exponential decay learning rate makes loss converages faster.
+BP algorithm with exponential decay learning rate makes loss converges faster.
