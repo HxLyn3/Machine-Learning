@@ -187,6 +187,7 @@ class NN():
             self.Ws[layer_idx] -= self.lr*self.delta_Ws[layer_idx]
             self.bs[layer_idx] -= self.lr*self.delta_bs[layer_idx]
 
+    def lr_update(self):
         self.lr *= self.lr_decay
         self.lr = max(self.lr, self.lr_min)
 
