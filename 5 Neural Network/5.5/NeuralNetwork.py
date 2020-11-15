@@ -35,9 +35,9 @@ class NN():
         self.ndims = ndims                  # [input_dim, hidden1_dim, hidden2_dim, ..., output_dim]
         self.nlayers = len(self.ndims) - 1
         # weights
-        self.Ws = [np.random.randn(self.ndims[i], self.ndims[i+1]) for i in range(self.nlayers)]
+        self.Ws = [np.random.randn(self.ndims[i], self.ndims[i+1])/np.sqrt(self.ndims[i]/2) for i in range(self.nlayers)]
         # biases
-        self.bs = [np.random.randn(1, self.ndims[i+1]) for i in range(self.nlayers)]
+        self.bs = [np.zeros((1, self.ndims[i+1])) for i in range(self.nlayers)]
 
         # activation functions for each layers
         self.activation_functions = activation_functions
@@ -86,6 +86,7 @@ class NN():
 
     def _loss(self, preds, ys, loss_type="CrossEntropy"):
         """ calculate loss """
+        bs = preds.shape[0]
         loss = None
         # use cross-entropy in classification tasks
         if loss_type == "CrossEntropy":
@@ -98,9 +99,9 @@ class NN():
 
         # regularization
         if self.regularization == "L1":
-            loss += self.lamb*sum([np.sum(np.abs(W)) for W in self.Ws])
+            loss += self.lamb*sum([np.sum(np.abs(W)) for W in self.Ws])/bs
         elif self.regularization == "L2":
-            loss += self.lamb*sum([np.sum(np.square(W)) for W in self.Ws])
+            loss += self.lamb*sum([np.sum(np.square(W)) for W in self.Ws])/bs
 
         return loss
 
@@ -165,9 +166,9 @@ class NN():
 
             # regularization
             if self.regularization == "L1":
-                self.delta_Ws[layer_idx] += self.lamb*np.sign(self.Ws[layer_idx])
+                self.delta_Ws[layer_idx] += self.lamb*np.sign(self.Ws[layer_idx])/bs
             elif self.regularization == "L2":
-                self.delta_Ws[layer_idx] += self.lamb*2*self.Ws[layer_idx]
+                self.delta_Ws[layer_idx] += self.lamb*2*self.Ws[layer_idx]/bs
 
             # loss's gradient to input of this layer
             delta_this_layer_in = np.matmul(delta_this_layer_out.reshape(bs, -1), self.Ws[layer_idx].T)
