@@ -6,7 +6,6 @@
 - `xlrd 1.2.0`  
 - `numpy 1.19.2`  
 - `matplotlib 3.3.2`  
-- `graphviz 0.14.2`
 
 ## Usage
 ```Shell
