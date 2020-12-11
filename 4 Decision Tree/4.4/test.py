@@ -40,7 +40,7 @@ test_ys = ys[test_indices]
 print("Accuracy:")
 
 # decision tree
-decisionTree = DecisionTree(train_xs, train_ys, test_xs, test_ys, attributes, isdiscs, labels,)
+decisionTree = DecisionTree(train_xs, train_ys, test_xs, test_ys, attributes, isdiscs, labels)
 # non pruning
 decisionTree.buildTree(partIndex='GiniIndex', prepruning=False)
 print("No-Pruning    --  %.3f"%decisionTree.test(test_xs, test_ys))
