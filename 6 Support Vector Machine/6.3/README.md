@@ -23,6 +23,6 @@ Test Accuracy:
 - Neural Network  :    79.31%
 - Decision Tree   :    79.31%
 ```  
-- Consumption: SVM and Neural Network require more computing resources than Decision Tree.
-- Parameters Tuning: important for Neural Network, but not for SVM and Decision Tree.
-- Performance: The above algorithms could deal with nonlinear separable dataset except linear SVM. Gaussian SVM, Neural Network and Decision Tree perform similarly on low-dimensional and small dataset (such as heart_failure_clinical_records_dataset, only 12 dimensions and hundreds of pieces of data).
+- `Consumption`: SVM and Neural Network require more computing resources than Decision Tree.
+- `Parameters Tuning`: important for Neural Network, but not for SVM and Decision Tree.
+- `Performance`: The above algorithms could deal with nonlinear separable dataset except linear SVM. Gaussian SVM, Neural Network and Decision Tree perform similarly on low-dimensional and small dataset (such as heart_failure_clinical_records_dataset, only 12 dimensions and hundreds of pieces of data).
